@@ -2,11 +2,16 @@
   text-align: center;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+body {
+  font-family: 'Poppins', sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -39,4 +44,10 @@
   }
 }
 
+.brand_name{
+  color: #31363F;
+  font-size:50px;
+  font-weight: 700;
+  padding: 20px;
 
+}

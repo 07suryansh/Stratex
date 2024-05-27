@@ -1,6 +1,16 @@
 .card{
     display: flex;
     flex-direction: column;
-    background-color: hotpink;
-    
+    background-color: #f1f1f2;
+    margin: 20px;
+    height: 400px;
+    width: 350px;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid #5b5b5c;
+    border-radius: 10px;
+}
+.movie_name{
+    font-size: larger;
+    font-weight: 500;
 }
