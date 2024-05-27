@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import "./App.css";
+import { useEffect, useState } from "react";
+import Card from "./Components/Card";
 
 function App() {
+  const [movieData, SetMovieData] = useState([]);
+  useEffect(()=>{axios
+    .get('https://dummyapi.online/api/movies')
+    .then((response) => {
+      SetMovieData(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });},[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul className="movie_data">
+        {movieData.map((val,index) => {
+          return <Card name={val.movie}
+          key={val.id}
+            rating={val.rating}
+            imd={val.imdb_url}
+            url={val.image}
+          />
+        })}
+      </ul>
     </div>
   );
 }
