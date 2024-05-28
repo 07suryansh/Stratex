@@ -1,32 +1,54 @@
 import React from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Card from "./Card";
-import './movieList.css'
+import "./movieList.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectMovies,
+  setMovie,
+  setFavourite,
+  setUnFavourite,
+  selectFavouriteMovies,
+} from "../Stores/states/movieState";
 
 export default function MovieList() {
-  const [movieData, SetMovieData] = useState([]);
+  const dispatch = useDispatch();
+  const movieData = useSelector(selectMovies);
+  const favouriteMovieData = useSelector(selectFavouriteMovies);
+  console.log("ye hai -> " + favouriteMovieData);
   useEffect(() => {
     axios
-      .get("https://dummyapi.online/api/movies")
+      .get(process.env.REACT_APP_API_KEY)
       .then((response) => {
-        SetMovieData(response.data);
+        var value = response.data.sort((a, b) => b.rating - a.rating);
+        dispatch(setMovie(value));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [dispatch]);
+
+  const handleFavouriteMovie = (movie) => {
+    if (favouriteMovieData.some((item) => item.id === movie.id)) {
+      dispatch(setUnFavourite(movie.id));
+    } else {
+      console.log("movie", movie);
+      dispatch(setFavourite(movie));
+    }
+  };
   return (
     <div className="movie_list">
       <ul className="movie_data">
-        {movieData.map((val, index) => {
+        {movieData?.map((val, index) => {
           return (
             <Card
-              name={val.movie}
-              key={val.id}
-              rating={val.rating}
-              imd={val.imdb_url}
-              url={val.image}
+              key={index}
+              item={val}
+              isFavourite={favouriteMovieData?.some(
+                (item) => item.id === val.id
+              )}
+              handleFavourite={handleFavouriteMovie}
             />
           );
         })}

@@ -1,16 +1,33 @@
 .card{
     display: flex;
     flex-direction: column;
-    background-color: #f1f1f2;
+    background-color: #ffe5e5;
     margin: 20px;
-    height: 400px;
-    width: 350px;
+    height: 700px;
+    width: 400px;
     justify-content: center;
     align-items: center;
-    border: 1.5px solid #5b5b5c;
+    /* border: 1px solid #5b5b5c; */
     border-radius: 10px;
+    color: #bd2525;
 }
 .movie_name{
     font-size: larger;
     font-weight: 500;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.icon{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+.img{
+    width: 90%;
+    border-radius: 10px;
 }
