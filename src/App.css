@@ -64,12 +64,12 @@ body {
 
 .btn{
   margin: 10px;
-  width: 240px;
-  height: 60px;
+  width: 160px;
+  height: 40px;
   border-radius: 100px;
   cursor: pointer;
   border: none;
-  font-size: large;
+  font-size: 16px;
   font-weight: 700;
   background-color: #ff80ff;
   background-color: #ffe2ff;
